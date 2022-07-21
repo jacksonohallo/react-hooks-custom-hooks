@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
-// take in the url
 function useQuery(url) {
   const [isLoaded, setIsLoaded] = useState(false);
-  // rename `posts` to a more generic `data`
+   const { data: posts, isLoaded } = useQuery("http://localhost:4000/posts");
+
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -23,3 +23,4 @@ function useQuery(url) {
 }
 
 export default useQuery;
+

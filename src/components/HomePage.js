@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import About from "./About";
 import ArticleList from "./ArticleList";
+import useDocumentTitle from "../hooks/useDocumentTitle";
 
 function HomePage() {
+  const { posts, isLoaded } = useQuery();
   // fetch data for posts
   const [isLoaded, setIsLoaded] = useState(false);
   const [posts, setPosts] = useState([]);
@@ -15,11 +17,6 @@ function HomePage() {
         setPosts(posts);
         setIsLoaded(true);
       });
-  }, []);
-
-  // set the document title
-  useEffect(() => {
-    document.title = "Underreacted | Home";
   }, []);
 
   return (

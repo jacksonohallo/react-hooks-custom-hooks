@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import useDocumentTitle from "../hooks/useDocumentTitle";
 import { makeEmojiList } from "../utils";
 
+
 function ArticlePage() {
-  // fetch data for a post
+  const { id } = useParams();
+  const { data: post, isLoaded } = useQuery(
+    `http://localhost:4000/posts/${id}`
   const { id } = useParams();
   const [isLoaded, setIsLoaded] = useState(false);
   const [post, setPost] = useState(null);
@@ -20,7 +24,10 @@ function ArticlePage() {
   }, [url]);
 
   // set the document title
-  const pageTitle = post ? `Underreacted | ${post.title}` : "Underreacted";
+  
+const pageTitle = post ? `Underreacted | ${post.title}` : "Underreacted";
+  
+  useDocumentTitle(pageTitle)
   useEffect(() => {
     document.title = pageTitle;
   }, [pageTitle]);
